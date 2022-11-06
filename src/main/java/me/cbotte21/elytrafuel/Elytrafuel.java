@@ -21,13 +21,7 @@ public final class Elytrafuel extends JavaPlugin {
     ArrayList<BatteryItem> batteries;
     @Override
     public void onEnable() {
-        // Plugin startup logic
-        String currTier;
-        int currCharges;
-        ArrayList<String> currRecipeStr = new ArrayList<>();
-        while (currRecipeStr.size() < 3) {//init ArrayList
-            currRecipeStr.add("");
-        }
+        //Config
         BatteryConfig config = new BatteryConfig(this);
         batteries = config.parse(this, namespacePrefix);
 
