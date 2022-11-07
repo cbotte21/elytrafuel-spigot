@@ -1,35 +1,20 @@
 package me.cbotte21.elytrafuel.configs;
 
 import me.cbotte21.elytrafuel.battery.BatteryItem;
-import org.bukkit.Material;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
-public class BatteryConfig {
-    private FileConfiguration config;
-    private File file;
-
-    public BatteryConfig(JavaPlugin p) {
-        String filename = "batteries.yml";
-        file = new File(p.getDataFolder(), filename);
-        if (!file.exists()) { //Create config
-            file.getParentFile().mkdirs();
-            config = getDefaultConfig();
-            save();
-        } else {
-            //load config
-            config = YamlConfiguration.loadConfiguration(file);
-        }
+public class BatteryConfig extends CustomConfig {
+    public BatteryConfig(File dataFolder, String filename) {
+        super(dataFolder, filename);
     }
-
-    public ArrayList<BatteryItem> parse(JavaPlugin plugin, String namespacePrefix) {
+    public ArrayList<BatteryItem> getBatteries(JavaPlugin plugin, String namespacePrefix) {
         ArrayList<BatteryItem> batteries = new ArrayList<>();
         Set<String> tiers = config.getKeys(false);
         config.options().pathSeparator('{');
@@ -50,21 +35,13 @@ public class BatteryConfig {
         }
         return batteries;
     }
-
-    private void save() {
-        try { //Save default config
-            config.save(file);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
     public boolean craftingEnabled() {
         return config.getBoolean("craft-able");
     }
     public int wearNotification() {
         return config.getInt("wear-notification");
     }
-    private static FileConfiguration getDefaultConfig() {
+    protected FileConfiguration getDefaultConfig() {
         FileConfiguration config = new YamlConfiguration();
         config.options().pathSeparator('{');
 

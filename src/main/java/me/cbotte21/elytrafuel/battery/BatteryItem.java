@@ -27,7 +27,6 @@ public class BatteryItem extends ItemStack {
 
         BatteryPayloadType payload = new BatteryPayloadType();
         ItemMeta meta = getItemMeta();
-
         meta.getPersistentDataContainer().set(namespace, payload, charges);
         meta.displayName(Component.text(tier.concat(" battery")));
         meta.addEnchant(Enchantment.DURABILITY, 5, true);

@@ -14,10 +14,11 @@ import java.util.ArrayList;
 
 public class BatterySpawn implements CommandExecutor {
     ArrayList<BatteryItem> batteries;
-    Component prefix;
-    public BatterySpawn(ArrayList<BatteryItem> batteries, Component prefix) {
+    Component playerNotFoundMessage, batteryNotFoundMessage;
+    public BatterySpawn(ArrayList<BatteryItem> batteries, Component playerNotFoundMessage, Component batteryNotFoundMessage) {
         this.batteries = batteries;
-        this.prefix = prefix;
+        this.playerNotFoundMessage = playerNotFoundMessage;
+        this.batteryNotFoundMessage = batteryNotFoundMessage;
     }
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
@@ -30,9 +31,9 @@ public class BatterySpawn implements CommandExecutor {
                         return true;
                     }
                 }
-                sender.sendMessage(prefix.append(Component.text(" Battery not found.")));
+                sender.sendMessage(batteryNotFoundMessage);
             } else {
-                sender.sendMessage(prefix.append(Component.text(" Player not found.")));
+                sender.sendMessage(playerNotFoundMessage);
             }
             return true;
         }

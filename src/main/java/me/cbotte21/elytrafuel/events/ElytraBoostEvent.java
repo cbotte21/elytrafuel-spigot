@@ -18,12 +18,13 @@ import java.util.Objects;
 
 public class ElytraBoostEvent implements Listener {
     ArrayList<NamespacedKey> namespaces;
-    Component prefix;
+    Component breakMessage, updateMessage;
     int wearNotification;
-    public ElytraBoostEvent(ArrayList<NamespacedKey> namespaces, Component prefix, int wearNotification) {
+    public ElytraBoostEvent(ArrayList<NamespacedKey> namespaces, Component breakMessage, Component updateMessage, int wearNotification) {
         this.namespaces = namespaces;
-        this.prefix = prefix;
         this.wearNotification = wearNotification;
+        this.breakMessage = breakMessage;
+        this.updateMessage = updateMessage;
     }
 
     @EventHandler
@@ -53,11 +54,11 @@ public class ElytraBoostEvent implements Listener {
                 //Use charge from battery
                 --charges;
                 if (charges <= 0) {
-                    event.getPlayer().sendMessage(prefix.append(Component.text(" Your battery has depleted!")));
+                    event.getPlayer().sendMessage(breakMessage);
                     event.getPlayer().getInventory().remove(event.getItemStack()); //Remove item
                     return;
                 } else if (charges % wearNotification == 0) { //Multiple of 50 charges left
-                    event.getPlayer().sendMessage(prefix.append(Component.text(String.format(" Your battery has %d charges left!", charges))));
+                    event.getPlayer().sendMessage(Component.text(String.format(updateMessage.toString(), charges)));
                 }
                 fireworkMetadata.lore(List.of(Component.text(String.format("Remaining charges: %d", charges))));
                 fireworkMetadata.getPersistentDataContainer().set(namespace, payload, charges);
