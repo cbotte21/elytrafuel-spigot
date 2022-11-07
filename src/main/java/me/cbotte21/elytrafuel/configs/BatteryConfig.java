@@ -1,6 +1,8 @@
 package me.cbotte21.elytrafuel.configs;
 
 import me.cbotte21.elytrafuel.battery.BatteryItem;
+import net.kyori.adventure.text.Component;
+import org.bukkit.ChatColor;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -8,6 +10,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Set;
 
 public class BatteryConfig extends CustomConfig {
@@ -30,7 +33,8 @@ public class BatteryConfig extends CustomConfig {
                     namespacePrefix,
                     config.getString(String.format("%s{tier", tier)),
                     config.getInt(String.format("%s{charges", tier)),
-                    recipe
+                    recipe,
+                    Objects.requireNonNull(config.getString(String.format("%s{lore", tier)))
             ));
         }
         return batteries;
@@ -49,6 +53,7 @@ public class BatteryConfig extends CustomConfig {
         config.set("wear-notification", 50);
         //Bedrock
         config.set("tesla{tier", "Tesla");
+        config.set("tesla{lore", "Remaining charges: %d");
         config.set("tesla{charges", Integer.MAX_VALUE);
         config.set("tesla{recipe{top", "RBR");
         config.set("tesla{recipe{middle", "BFB");
@@ -71,18 +76,21 @@ public class BatteryConfig extends CustomConfig {
 
         //Diamond
         config.set("diamond{tier", "Diamond");
+        config.set("diamond{lore", "Remaining charges: %d");
         config.set("diamond{charges", 500);
         config.set("diamond{recipe{top", "RDR");
         config.set("diamond{recipe{middle", "DFD");
         config.set("diamond{recipe{bottom", "RDR");
         //Gold
         config.set("gold{tier", "Gold");
+        config.set("gold{lore", "Remaining charges: %d");
         config.set("gold{charges", 250);
         config.set("gold{recipe{top", "RGR");
         config.set("gold{recipe{middle", "GFG");
         config.set("gold{recipe{bottom", "RGR");
         //Iron
         config.set("iron{tier", "Iron");
+        config.set("iron{lore", "Remaining charges: %d");
         config.set("iron{charges", 100);
         config.set("iron{recipe{top", "RIR");
         config.set("iron{recipe{middle", "IFI");

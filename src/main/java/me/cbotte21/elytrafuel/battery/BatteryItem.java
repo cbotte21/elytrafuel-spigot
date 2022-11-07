@@ -2,6 +2,7 @@ package me.cbotte21.elytrafuel.battery;
 
 import net.kyori.adventure.text.Component;
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.enchantments.Enchantment;
@@ -19,11 +20,13 @@ import java.util.logging.Level;
 public class BatteryItem extends ItemStack {
     String tier;
     NamespacedKey namespace;
+    String customLore;
     ShapedRecipe recipe;
-    public BatteryItem(JavaPlugin plugin, String namespacePrefix, String tier, int charges, ArrayList<String> recipeString) {
+    public BatteryItem(JavaPlugin plugin, String namespacePrefix, String tier, int charges, ArrayList<String> recipeString, String lore) {
         super(Material.FIREWORK_ROCKET, 1);
         this.namespace = new NamespacedKey(plugin, namespacePrefix.concat("_").concat(tier));
         this.tier = tier;
+        customLore = lore;
 
         BatteryPayloadType payload = new BatteryPayloadType();
         ItemMeta meta = getItemMeta();
@@ -31,7 +34,7 @@ public class BatteryItem extends ItemStack {
         meta.displayName(Component.text(tier.concat(" battery")));
         meta.addEnchant(Enchantment.DURABILITY, 5, true);
         meta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
-        meta.lore(List.of(Component.text(String.format("Remaining charges: %d", charges))));
+        meta.lore(List.of(Component.text(ChatColor.translateAlternateColorCodes('&', String.format(lore, charges)))));
         setItemMeta(meta);
 
         recipe = generateRecipe(recipeString);
@@ -78,6 +81,10 @@ public class BatteryItem extends ItemStack {
                 }
             }
             return recipe;
+    }
+
+    public String getCustomLore() {
+        return customLore;
     }
 
     public ShapedRecipe getRecipe() {

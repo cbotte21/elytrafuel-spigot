@@ -2,7 +2,6 @@ package me.cbotte21.elytrafuel.commands;
 
 import me.cbotte21.elytrafuel.battery.BatteryItem;
 import net.kyori.adventure.text.Component;
-import net.kyori.adventure.text.TextComponent;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;

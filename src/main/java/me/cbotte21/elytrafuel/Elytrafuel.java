@@ -36,10 +36,6 @@ public final class Elytrafuel extends JavaPlugin {
         Component playerNotFoundMessage = prefix.append(Component.text(ChatColor.translateAlternateColorCodes('&', messageConfig.getField(Fields.PLAYER_NOT_FOUND))));
         Component batteryNotFoundMessage = prefix.append(Component.text(ChatColor.translateAlternateColorCodes('&', messageConfig.getField(Fields.BATTERY_NOT_FOUND))));
 
-        ArrayList<NamespacedKey> namespaces = new ArrayList<>(); //Namespaces of all batteries
-        for (BatteryItem battery : batteries) {
-            namespaces.add(battery.getNamespace());
-        }
         //Enable crafting
         if (batteryConfig.craftingEnabled()) {
             for (BatteryItem battery : batteries) {
@@ -51,7 +47,7 @@ public final class Elytrafuel extends JavaPlugin {
         //Commands
         Objects.requireNonNull(getCommand("battery")).setExecutor(new BatterySpawn(batteries, playerNotFoundMessage, batteryNotFoundMessage));
         //Events
-        getServer().getPluginManager().registerEvents(new ElytraBoostEvent(namespaces, breakMessage, updateMessage, batteryConfig.wearNotification()), this);
+        getServer().getPluginManager().registerEvents(new ElytraBoostEvent(batteries, breakMessage, updateMessage, batteryConfig.wearNotification()), this);
     }
 
     @Override
