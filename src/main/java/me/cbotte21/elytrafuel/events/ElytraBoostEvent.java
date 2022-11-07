@@ -12,18 +12,18 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public class ElyctraBoostEvent implements Listener {
+public class ElytraBoostEvent implements Listener {
     ArrayList<NamespacedKey> namespaces;
     Component prefix;
     int wearNotification;
-    public ElyctraBoostEvent(ArrayList<NamespacedKey> namespaces, Component prefix, int wearNotification) {
+    public ElytraBoostEvent(ArrayList<NamespacedKey> namespaces, Component prefix, int wearNotification) {
         this.namespaces = namespaces;
         this.prefix = prefix;
         this.wearNotification = wearNotification;
     }
 
     @EventHandler
-    public void onElyctraBoost(PlayerElytraBoostEvent event) {
+    public void onElytraBoost(PlayerElytraBoostEvent event) {
         BatteryPayloadType payload = new BatteryPayloadType();
         ItemMeta fireworkMetadata = event.getItemStack().getItemMeta();
         for (NamespacedKey namespace : namespaces) { //Check for all batteries

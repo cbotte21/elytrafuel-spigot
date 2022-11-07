@@ -4,14 +4,13 @@ import me.cbotte21.elytrafuel.autocomplete.BatteryAutocomplete;
 import me.cbotte21.elytrafuel.battery.BatteryItem;
 import me.cbotte21.elytrafuel.commands.BatterySpawn;
 import me.cbotte21.elytrafuel.configs.BatteryConfig;
-import me.cbotte21.elytrafuel.events.ElyctraBoostEvent;
+import me.cbotte21.elytrafuel.events.ElytraBoostEvent;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.TextColor;
 import org.bukkit.Bukkit;
 import org.bukkit.NamespacedKey;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import java.awt.*;
 import java.util.ArrayList;
 import java.util.Objects;
 
@@ -40,7 +39,7 @@ public final class Elytrafuel extends JavaPlugin {
         //Commands
         Objects.requireNonNull(getCommand("battery")).setExecutor(new BatterySpawn(batteries, prefix));
         //Events
-        getServer().getPluginManager().registerEvents(new ElyctraBoostEvent(namespaces, prefix, config.wearNotification()), this);
+        getServer().getPluginManager().registerEvents(new ElytraBoostEvent(namespaces, prefix, config.wearNotification()), this);
     }
 
     @Override
