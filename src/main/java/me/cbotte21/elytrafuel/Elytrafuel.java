@@ -41,7 +41,7 @@ public final class Elytrafuel extends JavaPlugin {
         if (batteryConfig.craftingEnabled()) {
             for (BatteryItem battery : batteries) {
                 Bukkit.addRecipe(battery.getRecipe());
-
+                getServer().getPluginManager().registerEvents(new recipeDiscoveryEvent(batteries), this);
             }
         }
         //Autocompletes
@@ -50,7 +50,6 @@ public final class Elytrafuel extends JavaPlugin {
         Objects.requireNonNull(getCommand("battery")).setExecutor(new BatterySpawn(batteries, playerNotFoundMessage, batteryNotFoundMessage));
         //Events
         getServer().getPluginManager().registerEvents(new ElytraBoostEvent(batteries, breakMessage, updateMessage, batteryConfig.wearNotification()), this);
-        getServer().getPluginManager().registerEvents(new recipeDiscoveryEvent(batteries), this);
     }
 
     @Override
