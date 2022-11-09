@@ -6,6 +6,7 @@ import me.cbotte21.elytrafuel.commands.BatterySpawn;
 import me.cbotte21.elytrafuel.configs.BatteryConfig;
 import me.cbotte21.elytrafuel.configs.MessagesConfig;
 import me.cbotte21.elytrafuel.events.ElytraBoostEvent;
+import me.cbotte21.elytrafuel.events.recipeDiscoveryEvent;
 import net.kyori.adventure.text.Component;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -40,6 +41,7 @@ public final class Elytrafuel extends JavaPlugin {
         if (batteryConfig.craftingEnabled()) {
             for (BatteryItem battery : batteries) {
                 Bukkit.addRecipe(battery.getRecipe());
+
             }
         }
         //Autocompletes
@@ -48,6 +50,7 @@ public final class Elytrafuel extends JavaPlugin {
         Objects.requireNonNull(getCommand("battery")).setExecutor(new BatterySpawn(batteries, playerNotFoundMessage, batteryNotFoundMessage));
         //Events
         getServer().getPluginManager().registerEvents(new ElytraBoostEvent(batteries, breakMessage, updateMessage, batteryConfig.wearNotification()), this);
+        getServer().getPluginManager().registerEvents(new recipeDiscoveryEvent(batteries), this);
     }
 
     @Override
