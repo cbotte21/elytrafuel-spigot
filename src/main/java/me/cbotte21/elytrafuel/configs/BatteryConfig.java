@@ -3,6 +3,7 @@ package me.cbotte21.elytrafuel.configs;
 import me.cbotte21.elytrafuel.battery.BatteryItem;
 import net.kyori.adventure.text.Component;
 import org.bukkit.ChatColor;
+import org.bukkit.Material;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -72,7 +73,12 @@ public class BatteryConfig extends CustomConfig {
                 "G - Gold",
                 "I - Iron",
                 "R - Redstone",
-                "F - Firework rocket"));
+                "F - Firework rocket",
+                "Z - Iron Block",
+                "Y - Gold Block",
+                "X - Diamond Block",
+                "W - Emerald Block"
+        ));
 
         //Diamond
         config.set("diamond{tier", "Diamond");

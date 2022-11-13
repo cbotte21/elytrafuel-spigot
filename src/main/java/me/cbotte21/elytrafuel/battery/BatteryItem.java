@@ -54,6 +54,10 @@ public class BatteryItem extends ItemStack {
             case 'I' -> Material.IRON_INGOT;
             case 'R' -> Material.REDSTONE;
             case 'F' -> Material.FIREWORK_ROCKET;
+            case 'Z' -> Material.IRON_BLOCK;
+            case 'Y' -> Material.GOLD_BLOCK;
+            case 'X' -> Material.DIAMOND_BLOCK;
+            case 'W' -> Material.EMERALD_BLOCK;
             default -> Material.AIR;
         };
     }
