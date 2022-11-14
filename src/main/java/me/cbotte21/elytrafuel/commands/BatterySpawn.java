@@ -1,5 +1,7 @@
 package me.cbotte21.elytrafuel.commands;
 
+import java.util.Objects;
+import java.util.Optional;
 import me.cbotte21.elytrafuel.battery.BatteryItem;
 import net.kyori.adventure.text.Component;
 import org.bukkit.Bukkit;
@@ -21,12 +23,20 @@ public class BatterySpawn implements CommandExecutor {
     }
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
-        if (args != null && args.length == 3 && args[0].equalsIgnoreCase("spawn")) {
-            Player p = Bukkit.getPlayer(args[1]);
-            if (p != null) {
+        if (args != null && args.length >= 2 && args[0].equalsIgnoreCase("spawn")) {
+            Player player = null;
+            if(args.length >= 3) {
+                player = Bukkit.getPlayer(args[2]);
+            } else {
+                if(sender instanceof Player) {
+                    player = (Player) sender;
+                }
+            }
+
+            if (Objects.nonNull(player)) {
                 for (BatteryItem battery : batteries) {
-                    if (battery.equalsIgnoreCase(args[2])) {
-                        p.getInventory().addItem(battery);
+                    if (battery.equalsIgnoreCase(args[1])) {
+                        player.getInventory().addItem(battery);
                         return true;
                     }
                 }

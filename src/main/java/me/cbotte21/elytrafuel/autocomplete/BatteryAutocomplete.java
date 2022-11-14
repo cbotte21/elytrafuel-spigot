@@ -30,9 +30,10 @@ public class BatteryAutocomplete implements TabCompleter {
             return suggestions;
         }
         // /battery spawn <player> <***>
-        if (args.length == 3 && args[0].equalsIgnoreCase("spawn")) {
+        if (args.length == 2 && args[0].equalsIgnoreCase("spawn")) {
             return batteryTiers;
         }
+
         return suggestions;
     }
 }
