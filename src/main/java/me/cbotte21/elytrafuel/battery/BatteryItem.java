@@ -20,18 +20,20 @@ import java.util.logging.Level;
 public class BatteryItem extends ItemStack {
     String tier;
     NamespacedKey namespace;
-    String customLore;
+
+    String name;
+    String lore;
     ShapedRecipe recipe;
-    public BatteryItem(JavaPlugin plugin, String namespacePrefix, String tier, int charges, ArrayList<String> recipeString, String lore) {
+    public BatteryItem(JavaPlugin plugin, String namespacePrefix, String tier, int charges, ArrayList<String> recipeString, String name, String lore) {
         super(Material.FIREWORK_ROCKET, 1);
         this.namespace = new NamespacedKey(plugin, namespacePrefix.concat("_").concat(tier));
         this.tier = tier;
-        customLore = lore;
+        this.lore = lore;
 
         BatteryPayloadType payload = new BatteryPayloadType();
         ItemMeta meta = getItemMeta();
         meta.getPersistentDataContainer().set(namespace, payload, charges);
-        meta.displayName(Component.text(tier.concat(" battery")));
+        meta.displayName(Component.text(ChatColor.translateAlternateColorCodes('&', name)));
         meta.addEnchant(Enchantment.DURABILITY, 5, true);
         meta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
         meta.lore(List.of(Component.text(ChatColor.translateAlternateColorCodes('&', String.format(lore, charges)))));
@@ -88,7 +90,7 @@ public class BatteryItem extends ItemStack {
     }
 
     public String getCustomLore() {
-        return customLore;
+        return lore;
     }
 
     public ShapedRecipe getRecipe() {

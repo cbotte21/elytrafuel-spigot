@@ -35,6 +35,7 @@ public class BatteryConfig extends CustomConfig {
                     config.getString(String.format("%s{tier", tier)),
                     config.getInt(String.format("%s{charges", tier)),
                     recipe,
+                    Objects.requireNonNull(config.getString(String.format("%s{name", tier))),
                     Objects.requireNonNull(config.getString(String.format("%s{lore", tier)))
             ));
         }
@@ -54,7 +55,8 @@ public class BatteryConfig extends CustomConfig {
         config.set("wear-notification", 50);
         //Bedrock
         config.set("tesla{tier", "Tesla");
-        config.set("tesla{lore", "Remaining charges: %d");
+        config.set("tesla{name", "&dTesla Battery");
+        config.set("tesla{lore", "&7Remaining charges: %d");
         config.set("tesla{charges", Integer.MAX_VALUE);
         config.set("tesla{recipe{top", "RBR");
         config.set("tesla{recipe{middle", "BFB");
@@ -82,21 +84,24 @@ public class BatteryConfig extends CustomConfig {
 
         //Diamond
         config.set("diamond{tier", "Diamond");
-        config.set("diamond{lore", "Remaining charges: %d");
+        config.set("diamond{name", "&bDiamond Battery");
+        config.set("diamond{lore", "&7Remaining charges: %d");
         config.set("diamond{charges", 500);
         config.set("diamond{recipe{top", "RDR");
         config.set("diamond{recipe{middle", "DFD");
         config.set("diamond{recipe{bottom", "RDR");
         //Gold
         config.set("gold{tier", "Gold");
-        config.set("gold{lore", "Remaining charges: %d");
+        config.set("gold{name", "&6Gold Battery");
+        config.set("gold{lore", "&7Remaining charges: %d");
         config.set("gold{charges", 250);
         config.set("gold{recipe{top", "RGR");
         config.set("gold{recipe{middle", "GFG");
         config.set("gold{recipe{bottom", "RGR");
         //Iron
         config.set("iron{tier", "Iron");
-        config.set("iron{lore", "Remaining charges: %d");
+        config.set("iron{name", "&8Iron Battery");
+        config.set("iron{lore", "&7Remaining charges: %d");
         config.set("iron{charges", 100);
         config.set("iron{recipe{top", "RIR");
         config.set("iron{recipe{middle", "IFI");

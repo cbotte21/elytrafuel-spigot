@@ -9,7 +9,6 @@ import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.TextReplacementConfig;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
-import org.bukkit.NamespacedKey;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerInteractEvent;
@@ -64,7 +63,7 @@ public class ElytraBoostEvent implements Listener {
                 } else if (charges % wearNotification == 0) { //Multiple of 50 charges left
                     event.getPlayer().sendMessage(updateMessage.replaceText(TextReplacementConfig.builder().match("%d").replacement(String.valueOf(charges)).build()));
                 }
-                fireworkMetadata.lore(List.of(Component.text(ChatColor.translateAlternateColorCodes('&', String.format(battery.getCustomLore(), charges)))));
+                fireworkMetadata.lore(List.of(Component.text(ChatColor.translateAlternateColorCodes('&', String.format(battery.getLore(), charges)))));
                 fireworkMetadata.getPersistentDataContainer().set(battery.getNamespace(), payload, charges);
                 event.getItemStack().setItemMeta(fireworkMetadata);
             }
