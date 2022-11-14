@@ -2,10 +2,12 @@ name: ElytraFuel
 version: '${version}'
 main: me.cbotte21.elytrafuel.Elytrafuel
 api-version: 1.19
-authors: [ cbotte21 ]
+authors: [ cbotte21, Samkist ]
 description: A donor perk for unlimited fuel with one firework.
 commands:
   battery:
     description: Spawn in a battery
     usage: /battery spawn <player> <tier>
     permission: elytrafuel.spawn
+
+softdepend: [PlaceholderAPI]
