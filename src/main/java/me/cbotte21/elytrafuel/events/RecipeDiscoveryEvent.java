@@ -7,9 +7,9 @@ import org.bukkit.event.player.PlayerJoinEvent;
 
 import java.util.ArrayList;
 
-public class recipeDiscoveryEvent implements Listener {
+public class RecipeDiscoveryEvent implements Listener {
     ArrayList<BatteryItem> batteries;
-    public recipeDiscoveryEvent(ArrayList<BatteryItem> batteries) {
+    public RecipeDiscoveryEvent(ArrayList<BatteryItem> batteries) {
         this.batteries = batteries;
     }
     @EventHandler
