@@ -55,13 +55,15 @@ public class ElytraBoostEvent implements Listener {
                 event.setShouldConsume(false); //Do not consume batteries
                 int charges = Objects.requireNonNull(fireworkMetadata.getPersistentDataContainer().get(battery.getNamespace(), payload)); //Get charges left on battery
                 //Use charge from battery
-                --charges;
-                if (charges <= 0) {
-                    event.getPlayer().sendMessage(breakMessage);
-                    event.getPlayer().getInventory().remove(event.getItemStack()); //Remove item
-                    return;
-                } else if (charges % wearNotification == 0) { //Multiple of 50 charges left
-                    event.getPlayer().sendMessage(updateMessage.replaceText(TextReplacementConfig.builder().match("%d").replacement(String.valueOf(charges)).build()));
+                if (charges >= 0) {
+                    --charges;
+                    if (charges == 0) {
+                        event.getPlayer().sendMessage(breakMessage);
+                        event.getPlayer().getInventory().removeItemAnySlot(event.getItemStack()); //Remove item
+                        return;
+                    } else if (charges % wearNotification == 0) {
+                        event.getPlayer().sendMessage(updateMessage.replaceText(TextReplacementConfig.builder().match("%d").replacement(String.valueOf(charges)).build()));
+                    }
                 }
                 fireworkMetadata.lore(List.of(Component.text(ChatColor.translateAlternateColorCodes('&', String.format(battery.getCustomLore(), charges)))));
                 fireworkMetadata.getPersistentDataContainer().set(battery.getNamespace(), payload, charges);
